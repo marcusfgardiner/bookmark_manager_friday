@@ -1,13 +1,12 @@
 require 'pg'
 
 class DatabaseConnection
-
   def self.setup(dbname)
     @connection = PG.connect(dbname: dbname)
   end
 
-  def self.connection
-    @connection
+  class << self
+    attr_reader :connection
   end
 
   def self.query(sql)
@@ -15,5 +14,9 @@ class DatabaseConnection
     result.values
   end
 
-
+  def self.wrap_database
+    result = query('SELECT * FROM links')
+    array_of_arrays = result.map { |k| k }
+    array_of_arrays.each { |array| Link.new(array) }
+  end
 end
