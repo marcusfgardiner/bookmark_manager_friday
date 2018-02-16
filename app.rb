@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require './lib/link'
-require './spec/database_connection_setup'
+require_relative 'database_connection_setup'
 
 class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
@@ -9,6 +9,7 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
 
   get '/' do
+    DatabaseConnection.wrap_database
     @links = Link.all
     erb(:index)
   end

@@ -3,34 +3,26 @@ require 'uri'
 
 class Link
 
+  attr_reader :id, :url
+
   def initialize(array)
-    p @id = array[0]
-    p @url = array[1]
-      Link.all_two << self
+    @id = array[0].to_i
+    @url = array[1]
+    Link.all << self
   end
-
-  def self.all_two
-    @links
-  end
-
-  def self.create_links
-    @links = []
-  end
-
-  # def self.store_link(new_link_object)
-  #   @links << new_link_object
-  # end
 
   def self.all
-    array = DatabaseConnection.query("SELECT url FROM links")
-    # array.each {|url|
-
-    # }
+    result = DatabaseConnection.query('SELECT * FROM links')
+    result.map { |array| Link.new(array) }
+    @links ||= []
   end
+  # If links is nil, make it a blank array
+  # If not, leave it
 
   def self.add(new_link)
     error_check(new_link)
     DatabaseConnection.query("INSERT INTO links (url) VALUES('#{new_link}')")
+    DatabaseConnection.wrap_database
   end
 
   def self.error_check(new_link)
