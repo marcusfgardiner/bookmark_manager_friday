@@ -13,10 +13,4 @@ class DatabaseConnection
     result = @connection.exec(sql)
     result.values
   end
-
-  # def self.wrap_database
-  #   # result = query('SELECT * FROM links')
-  #   # array_of_arrays = result.map { |k| k }
-  #   # result.map { |array| Link.new(array) }
-  # end
 end

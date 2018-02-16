@@ -9,7 +9,6 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
 
   get '/' do
-    DatabaseConnection.wrap_database
     @links = Link.all
     erb(:index)
   end

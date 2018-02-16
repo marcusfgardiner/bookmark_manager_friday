@@ -16,5 +16,5 @@ task :setup_test_database do
   INSERT INTO links (url) VALUES('http://www.makersacademy.com');
   INSERT INTO links (url) VALUES('http://www.google.com');
   INSERT INTO links (url) VALUES('http://www.facebook.com');")
-  DatabaseConnection.wrap_database
+  # DatabaseConnection.wrap_database
 end
