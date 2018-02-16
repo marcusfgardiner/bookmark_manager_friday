@@ -24,5 +24,4 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
-  run! if app_file == $PROGRAM_NAME
 end

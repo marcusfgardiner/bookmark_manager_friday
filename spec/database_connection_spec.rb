@@ -2,10 +2,9 @@ require 'database_connection'
 
 describe DatabaseConnection do
 
-  describe '#::setup' do
+  describe '::setup' do
     it "receives a message to connect to the database through PG" do
       expect(PG).to receive(:connect).with(dbname: 'bookmark_manager_test')
-
       DatabaseConnection.setup('bookmark_manager_test')
     end
 
@@ -14,17 +13,17 @@ describe DatabaseConnection do
     end
   end
 
-  describe '#::connection' do
+  describe '::connection' do
     it "creates persistent connection" do
       connection = DatabaseConnection.setup('bookmark_manager_test')
       expect(DatabaseConnection.connection).to eq connection
     end
   end
 
-  describe '#::query' do
+  describe '::query' do
     it 'outputs the expected result' do
       described_class.setup('bookmark_manager_test')
-      query_string = "SELECT url FROM links LIMIT 1"
+      query_string = "SELECT url FROM links LIMIT 3"
       expect(described_class.query(query_string)).to eq ([['http://www.makersacademy.com']])
     end
   end

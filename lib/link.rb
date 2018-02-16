@@ -3,8 +3,20 @@ require 'uri'
 
 class Link
 
+  def initialize
+    store_link(self)
+  end
+
+  def store_link(new_link_object)
+    @links = []
+    @links << new_link_object
+  end
+
   def self.all
-    DatabaseConnection.query("SELECT url FROM links")
+    p array = DatabaseConnection.query("SELECT url FROM links")
+    # array.each {|url|
+
+    # }
   end
 
   def self.add(new_link)
