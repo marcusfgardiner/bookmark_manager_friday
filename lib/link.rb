@@ -3,11 +3,12 @@ require 'uri'
 
 class Link
 
-  attr_reader :id, :url
+  attr_reader :id, :url, :title
 
   def initialize(array)
     @id = array[0].to_i
     @url = array[1]
+    @title = array[2]
   end
 
   def self.all
@@ -15,10 +16,9 @@ class Link
     result.map { |array| Link.new(array) }
   end
 
-
-  def self.add(new_link)
+  def self.add(new_link, new_title)
     error_check(new_link)
-    DatabaseConnection.query("INSERT INTO links (url) VALUES('#{new_link}')")
+    DatabaseConnection.query("INSERT INTO links (url, title) VALUES('#{new_link}', '#{new_title}')")
   end
 
   def self.error_check(new_link)
