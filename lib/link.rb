@@ -3,17 +3,18 @@ require 'uri'
 
 class Link
 
-  def initialize
-    store_link(self)
-  end
+  # def initialize(hash)
+  #   store_link(self)
+  #   # @url = hash.values
+  # end
 
-  def store_link(new_link_object)
-    @links = []
-    @links << new_link_object
-  end
+  # def store_link(new_link_object)
+  #   @links = []
+  #   @links << new_link_object
+  # end
 
   def self.all
-    p array = DatabaseConnection.query("SELECT url FROM links")
+    DatabaseConnection.query("SELECT url FROM links")
     # array.each {|url|
 
     # }

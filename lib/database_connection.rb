@@ -12,11 +12,8 @@ class DatabaseConnection
 
   def self.query(sql)
     result = @connection.exec(sql)
-    # p result.values
-    # # p result.keys
-    array_of_hashes = result.map {|k,v|
-      p k
-    }
-    p array_of_hashes
+    result.values
   end
+
+
 end
