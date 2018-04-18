@@ -2,7 +2,6 @@ require_relative 'database_connection'
 require 'uri'
 
 class Link
-
   attr_reader :id, :url, :title
 
   def initialize(array)
@@ -22,7 +21,7 @@ class Link
   end
 
   def self.error_check(new_link)
-    raise "This is not a valid URL" unless valid_url?(new_link)
+    raise 'This is not a valid URL' unless valid_url?(new_link)
   end
 
   def self.valid_url?(new_link)

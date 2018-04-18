@@ -2,14 +2,14 @@ require 'pg'
 require_relative 'lib/database_connection'
 
 task :setup do
-  p "Databases being created..."
+  p 'Databases being created...'
   connection = PG.connect
   %w[bookmark_manager bookmark_manager_test].each do |database|
     connection.exec("CREATE DATABASE #{database}")
     DatabaseConnection.setup(database.to_s)
     DatabaseConnection.query('CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR(60), title VARCHAR(60));')
   end
-    p "Complete"
+  p 'Complete'
 end
 
 task :setup_test_database do
@@ -21,10 +21,10 @@ task :setup_test_database do
 end
 
 task :drop_databases do
-  p "Databases being deleted..."
+  p 'Databases being deleted...'
   connection = PG.connect
   %w[bookmark_manager bookmark_manager_test].each do |database|
     connection.exec("DROP DATABASE #{database}")
   end
-  p "Deleted"
+  p 'Deleted'
 end

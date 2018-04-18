@@ -1,9 +1,7 @@
 require 'link'
 
 describe Link do
-
   describe '::all' do
-
     # it 'returns all links' do
     #   links = described_class.all
     #   expect(links).to include(['http://www.makersacademy.com'])
@@ -21,24 +19,24 @@ describe Link do
   end
 
   it 'returns the URL of a link object' do
-    expect(described_class.all[0].url).to eq("http://www.makersacademy.com")
+    expect(described_class.all[0].url).to eq('http://www.makersacademy.com')
   end
 
   describe '::add' do
     context 'user inputs invalid URL' do
       it 'raises error' do
         message = 'This is not a valid URL'
-        expect { described_class.add(345, "Title") }.to raise_error(message)
+        expect { described_class.add(345, 'Title') }.to raise_error(message)
       end
     end
 
     it 'creates a new link with a url' do
-      described_class.add('https://www.instagram.com','Instagram')
+      described_class.add('https://www.instagram.com', 'Instagram')
       expect(described_class.all[-1].url).to eq('https://www.instagram.com')
     end
 
     it 'creates a new link with a title' do
-      described_class.add('https://www.instagram.com','Instagram')
+      described_class.add('https://www.instagram.com', 'Instagram')
       expect(described_class.all[-1].title).to eq('Instagram')
     end
   end

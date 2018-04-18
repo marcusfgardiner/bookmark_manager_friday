@@ -13,5 +13,4 @@ class DatabaseConnection
     result = @connection.exec(sql)
     result.values
   end
-
 end
